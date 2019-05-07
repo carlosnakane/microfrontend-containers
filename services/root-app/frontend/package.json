@@ -1,0 +1,28 @@
+{
+  "name": "root-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "browserify src/index.js -o dist/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "eslint": "^5.16.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
+}

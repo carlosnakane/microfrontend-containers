@@ -1,0 +1,20 @@
+version: "3.4"
+
+x-base: &base
+  build:
+    dockerfile: Dockerfile
+  environment:
+    REGISTRY_API: ${HOST_PROTOCOL}://${HOST_IP}:${REGISTRY_EXTERNAL_PORT}
+    FRONTEND_INTERNAL_PORT: ${FRONTEND_INTERNAL_PORT}
+    API_INTERNAL_PORT: ${API_INTERNAL_PORT}
+
+services:
+  registry:
+    container_name: services_registry
+    <<: *base
+    build: 
+      context: ./services/registry
+    image: services/registry
+    ports:
+      - "${REGISTRY_EXTERNAL_PORT}:${FRONTEND_INTERNAL_PORT}"
+  

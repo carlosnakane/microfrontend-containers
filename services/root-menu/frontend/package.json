@@ -1,0 +1,27 @@
+{
+  "name": "root-menu",
+  "version": "1.0.0",
+  "description": "menu da aplicação",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "browserify src/index.js -o dist/index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "eslint": "^5.16.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
+}
