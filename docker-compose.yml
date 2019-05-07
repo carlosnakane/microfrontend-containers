@@ -16,5 +16,5 @@ services:
       context: ./services/registry
     image: services/registry
     ports:
-      - "${REGISTRY_EXTERNAL_PORT}:${FRONTEND_INTERNAL_PORT}"
+      - "${REGISTRY_EXTERNAL_PORT}:${API_INTERNAL_PORT}"
   
