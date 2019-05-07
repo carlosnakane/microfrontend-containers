@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const PORT = process.env.API_INTERNAL_PORT;
+
 const insertOrUpdate = (req, res) => {
   const response = services.publish(req.body);
   res.send(response);
@@ -24,6 +26,6 @@ app.delete('/', (req, res) => {
   res.send(response);
 });
 
-app.listen(process.env.PORT, () =>
-  console.log(`Registry running on port ${process.env.API_INTERNAL_PORT}!`),
+app.listen(PORT, () =>
+  console.log(`Registry running on port ${PORT}!`),
 );
