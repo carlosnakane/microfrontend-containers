@@ -1,28 +1,11 @@
 import Joi from '@hapi/joi';
 
-/**
- *
-  const nodeShape = {
-    name: 'adm',
-    path: 'administrativo',
-    title: 'Administrativo'
-    children: [
-      {
-        name: 'compras',
-        path: 'compras',
-        title: 'Compras'
-        assetsUrl: 'http://localhost:18082'
-      }
-    ]
-  }
-*/
-
 const schema = Joi.object().keys({
-  address: Joi.string(),
+  staticServerUrl: Joi.string().required(),
   packageJson: Joi.object().keys({
-    main: Joi.string(),
-    version: Joi.string(),
-    name: Joi.string(),
+    main: Joi.string().required(),
+    version: Joi.string().required(),
+    name: Joi.string().required(),
     hercules: Joi.object({
       path: Joi.string(),
       title: Joi.string()
@@ -31,7 +14,7 @@ const schema = Joi.object().keys({
 });
 
 const validateSchema = (entry) => {
-  return Joi.validate(entry, schema, { presence: 'required' });
+  return Joi.validate(entry, schema);
 }
 
 export default validateSchema;

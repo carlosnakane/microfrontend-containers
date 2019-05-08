@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.API_INTERNAL_PORT;
+const PORT = process.env.INTERNAL_PORT;
 
 const insertOrUpdate = (req, res) => {
   const response = services.publish(req.body);

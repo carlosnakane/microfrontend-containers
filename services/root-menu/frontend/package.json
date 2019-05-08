@@ -15,7 +15,10 @@
     "@babel/preset-env": "^7.4.4",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "serve-index": "^1.9.1"
   },
   "browserify": {
     "transform": [

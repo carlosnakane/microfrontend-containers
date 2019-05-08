@@ -1,20 +1,41 @@
-version: "3.4"
+version: "2"
 
 x-base: &base
   build:
     dockerfile: Dockerfile
   environment:
+    REGISTRY_EXTERNAL_PORT: ${REGISTRY_EXTERNAL_PORT}
+    REGISTRY_INTERNAL_PORT: ${REGISTRY_INTERNAL_PORT}
+    REGISTRY_SERVICE_NAME: registry
     REGISTRY_API: ${HOST_PROTOCOL}://${HOST_IP}:${REGISTRY_EXTERNAL_PORT}
-    FRONTEND_INTERNAL_PORT: ${FRONTEND_INTERNAL_PORT}
-    API_INTERNAL_PORT: ${API_INTERNAL_PORT}
+    HOST_PROTOCOL: ${HOST_PROTOCOL}
+    HOST_IP: ${HOST_IP}
+  networks:
+    - frontend-compose-network
 
 services:
   registry:
-    container_name: services_registry
+    extends:
+      file: ./services/registry/docker-compose.yml
+      service: app
+    container_name: registry
     <<: *base
     build: 
       context: ./services/registry
     image: services/registry
-    ports:
-      - "${REGISTRY_EXTERNAL_PORT}:${API_INTERNAL_PORT}"
+
+  root-menu:
+    extends:
+      file: ./services/root-menu/docker-compose.yml
+      service: app
+    container_name: root-menu
+    <<: *base
+    build: 
+      context: ./services/root-menu
+    image: services/root-menu
+    depends_on:
+      - registry
   
+networks: 
+  frontend-compose-network:
+    driver: bridge

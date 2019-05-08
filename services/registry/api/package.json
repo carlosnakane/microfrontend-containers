@@ -3,9 +3,9 @@
   "description": "Serviço de registro dos módulos/components",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "cross-env API_INTERNAL_PORT=8081 nodemon --exec babel-node src/index.js",
+    "start": "cross-env INTERNAL_PORT=8081 nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
-    "serve": "cross-env API_INTERNAL_PORT=8081 node dist/index.js"
+    "serve": "cross-env INTERNAL_PORT=8081 node dist/index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  app:
+    environment:
+      EXTERNAL_PORT: ${REGISTRY_EXTERNAL_PORT}
+      INTERNAL_PORT: ${REGISTRY_INTERNAL_PORT}
+    ports:
+      - "${REGISTRY_EXTERNAL_PORT}:${REGISTRY_INTERNAL_PORT}"
