@@ -27,5 +27,5 @@ app.delete('/', (req, res) => {
 });
 
 app.listen(PORT, () =>
-  console.log(`Registry running on port ${PORT}!`),
+  console.log(`Running on port ${PORT} (internal)`),
 );
