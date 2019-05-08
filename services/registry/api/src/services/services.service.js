@@ -29,7 +29,7 @@ const servicesService = (() => {
         message: `Não há um serviço com o nome ${serviceName} publicado`
       };
     }
-    delete mock[serviceName];
+    delete mock.delete(serviceName);
     return {
       error: false,
     };
