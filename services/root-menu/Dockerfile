@@ -6,4 +6,4 @@ RUN cd frontend \
   && npm i \ 
   && npm run build
 
-CMD ["sh", "/startup.sh"]
+CMD ["node", "frontend/static-server/index.js"]

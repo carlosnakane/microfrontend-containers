@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const serveIndex = require('serve-index')
-const register = require('./register');
+const registering = require('./registering');
 
 const distFolder = path.join(__dirname, '../dist');
 
@@ -15,7 +15,7 @@ app.listen(process.env.INTERNAL_PORT, function() {
   const registryServer = `http://${process.env.REGISTRY_SERVICE_NAME}:${process.env.REGISTRY_INTERNAL_PORT}`;
   const staticServerUrl = `${process.env.HOST_PROTOCOL}://${process.env.HOST_IP}:${process.env.EXTERNAL_PORT}`;
 
-  register(registryServer, staticServerUrl, (error, res, body) => {
+  registering.register(registryServer, staticServerUrl, (error, res, body) => {
     if (error) {
       console.error(error)
       return;
@@ -27,5 +27,16 @@ app.listen(process.env.INTERNAL_PORT, function() {
     }
 
     console.log(`Registered on Registry Server through the url ${staticServerUrl}`);
+
+    Object.keys({'SIGHUP': 1, 'SIGINT': 2, 'SIGTERM': 15 })
+    .forEach(function (signal) {
+      process.on(signal, function () {
+        console.log(`Signal ${signal} received. Unregistering from Registry Server`);
+        registering.unregister(registryServer, function() {
+          console.log(`Unregistered`);
+        });
+      });
+    });
+
   });
 });
