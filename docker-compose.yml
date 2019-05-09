@@ -71,6 +71,18 @@ services:
     image: services/app-b
     depends_on:
       - registry
+
+  app-c:
+    extends:
+      file: ./services/app-c/docker-compose.yml
+      service: app
+    container_name: app-c
+    <<: *base
+    build: 
+      context: ./services/app-c
+    image: services/app-c
+    depends_on:
+      - registry
   
 networks: 
   frontend-compose-network:

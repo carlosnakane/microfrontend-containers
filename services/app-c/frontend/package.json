@@ -1,6 +1,7 @@
 {
   "name": "app-c",
   "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +10,10 @@
     "e2e": "ng e2e",
     "build-splited": "ng build --prod",
     "build": "ng build --prod app-c --output-hashing none && node concat-bundle.js"
+  },
+  "hercules": {
+    "path": "app-c",
+    "title": "App C"
   },
   "private": true,
   "dependencies": {
