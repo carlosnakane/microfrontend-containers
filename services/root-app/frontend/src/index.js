@@ -34,6 +34,7 @@ const setupMenu = () => {
 
 const navigate = (route) => {
   const moduleName = route.replace('/', '');
+  history.pushState(null, null, route);
   changeModule(moduleName);
 }
 

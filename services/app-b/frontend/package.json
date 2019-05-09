@@ -1,0 +1,42 @@
+{
+  "name": "app-b",
+  "version": "1.0.0",
+  "description": "App B",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "hercules": {
+    "path": "app-b",
+    "title": "App B"
+  },
+  "scripts": {
+    "prestart": "npm run copy-static",
+    "prebuild": "npm run copy-static",
+    "http-server": "http-server dist",
+    "copy-static": "copyfiles -f src/public/* dist/",
+    "build": "browserify src/index.js -o dist/index.js",
+    "start": "watchify src/index.js -o dist/index.js -dv"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "copyfiles": "^2.1.0",
+    "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "http-server": "^0.11.1",
+    "request": "^2.88.0",
+    "serve-index": "^1.9.1",
+    "watchify": "^3.11.1"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
+}

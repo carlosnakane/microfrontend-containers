@@ -9,12 +9,12 @@
         text-align: center;
         }
     </style>
-    <h1>App A</h1>
-    Web Component com javascript puro (babel ES6) ☝
+    <h1>App B</h1>
+    Web Component com javascript puro ☕
   `;
 
 
-  class AppA extends HTMLElement {
+  class AppB extends HTMLElement {
 
     constructor() {
       super();
@@ -23,14 +23,14 @@
     }
 
     connectedCallback() {
-      console.log('app-a connected');
+      console.log('app-b connected');
     }
 
     disconnectedCallback() {
-      console.log('app-a disconnected');
+      console.log('app-b disconnected');
     }
     
   }
-  window.customElements.define('app-a', AppA);
+  window.customElements.define('app-b', AppB);
   })
 ();
