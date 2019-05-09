@@ -16,19 +16,47 @@ utils
     .init(env.REGISTRY_API)
     .then(() => {
       utils.moduleLoader.loadModule(rootMenuName)
-        .then(() => setupMenu());
+        .then(() => initUI());
     });
+
+const initUI = () => {
+  setupMenu();
+}
+
+const alreadyLoaded = [];
 
 const setupMenu = () => {
   const $menu = document.getElementsByTagName(rootMenuName)[0];
+  const routes = parseRoutes();
+  $menu.setAttribute('routes', JSON.stringify(routes));
+  $menu.addEventListener('routeClick', e => navigate(e.detail));
+}
 
-  const items = Object.keys(utils.moduleLoader.registryDictionary)
+const navigate = (route) => {
+  const moduleName = route.replace('/', '');
+  changeModule(moduleName);
+}
+
+const parseRoutes = () => {
+  return Object.keys(utils.moduleLoader.registryDictionary)
     .filter(moduleName => utils.moduleLoader.registryDictionary[moduleName].packageJson.hercules != null)
     .map(moduleName => ({
     name: moduleName,
-    path: utils.moduleLoader.registryDictionary[moduleName].packageJson.hercules['path'],
+    path: `/${utils.moduleLoader.registryDictionary[moduleName].packageJson.hercules['path']}`,
     label: utils.moduleLoader.registryDictionary[moduleName].packageJson.hercules['title'],
   }));
-  
-  $menu.setAttribute('items-list', JSON.stringify(items));
+}
+
+const changeModule = (name) => {
+  const rootContainer = document.getElementById('root-content');
+  rootContainer.innerHTML = '';
+  if(alreadyLoaded.includes(name)) {
+    rootContainer.innerHTML = `<${name}><${name}/>`;
+    return;
+  }
+  utils.moduleLoader.loadModule(name)
+    .then(() => {
+      alreadyLoaded.push(name);
+      rootContainer.innerHTML = `<${name}><${name}/>`;
+    });
 }
