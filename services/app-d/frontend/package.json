@@ -1,0 +1,35 @@
+{
+  "name": "app-d",
+  "version": "1.0.0",
+  "description": "App D",
+  "main": "index.js",
+  "hercules": {
+    "path": "app-d",
+    "title": "App D"
+  },
+  "scripts": {
+    "build": "browserify src/index.js -o dist/index.js"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "express": "^4.16.4",
+    "serve-index": "^1.9.1",
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
+}

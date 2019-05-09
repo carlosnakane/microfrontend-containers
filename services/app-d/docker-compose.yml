@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  app:
+    environment:
+      EXTERNAL_PORT: 18086
+      INTERNAL_PORT: 80
+    ports:
+      - "18086:80"
