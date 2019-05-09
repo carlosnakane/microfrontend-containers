@@ -4,13 +4,12 @@
   "main": "index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "prestart": "cross-env REGISTRY_API=http://127.0.0.1:18081 npm run print-env && npm run copy-static",
+    "prestart": "cross-env REGISTRY_API=http://127.0.0.1:18081 && npm run copy-static",
     "prebuild": "npm run copy-static",
-    "print-env": "sh print-env.sh > src/env.js",
     "copy-static": "copyfiles -f src/public/* dist/",
     "start": "watchify src/index.js -o dist/index.js -dv",
     "build": "browserify src/index.js -o dist/index.js",
-    "http-server": "http-server-spa dist index.html"
+    "http-server": "node startup.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -22,7 +21,6 @@
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "express": "^4.16.4",
-    "http-server-spa": "^1.3.0",
     "watchify": "^3.11.1"
   },
   "dependencies": {
