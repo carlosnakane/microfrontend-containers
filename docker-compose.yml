@@ -24,6 +24,18 @@ services:
       context: ./services/registry
     image: services/registry
 
+  root-app:
+    extends:
+      file: ./services/root-app/docker-compose.yml
+      service: app
+    container_name: root-app
+    <<: *base
+    build: 
+      context: ./services/root-app
+    image: services/root-app
+    depends_on:
+      - registry
+
   root-menu:
     extends:
       file: ./services/root-menu/docker-compose.yml

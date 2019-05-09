@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prestart": "cross-env REGISTRY_API=http://127.0.0.1:18081 npm run print-env && npm run copy-static",
-    "prebuild": "npm run print-env && npm run copy-static",
+    "prebuild": "npm run copy-static",
     "print-env": "sh print-env.sh > src/env.js",
     "copy-static": "copyfiles -f src/public/* dist/",
     "start": "watchify src/index.js -o dist/index.js -dv",
@@ -26,8 +26,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "axios": "^0.18.0",
-    "router5-plugin-browser": "^7.0.2"
+    "axios": "^0.18.0"
   },
   "browserify": {
     "transform": [
