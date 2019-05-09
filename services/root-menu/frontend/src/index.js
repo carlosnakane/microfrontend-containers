@@ -1,56 +1,70 @@
 (function() {
 
+  const template = document.createElement('template');
+  template.innerHTML = `
+    <style>
+        :host {
+          font-family: sans-serif;
+        }
+    </style>
+
+    <div>
+    </div>
+  `;
+
   class RootMenu extends HTMLElement {
 
     constructor() {
       super();
+      this._shadowRoot = this.attachShadow({ 'mode': 'open' });
+      this._shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
-      console.log(this.itemsUrl);
-      fetch(this.itemsUrl).then(res => res.json().then(json => console.log(json)));
+      this.draw();
     }
 
-    draw(items) {
-      this.innerHTML = '';
-      const container = document.createElement('div');
-      container.append(drawNode(items));
-      this.appendChild(container);
+    draw() {
+      const container = this._shadowRoot.querySelector('div');
+      const items = JSON.parse(this.itemsList);
+      container.innerHTML = '';
+      
+      if(!Array.isArray(items)) {
+        return;
+      }
+      
+      const node = this.drawNode(items);
+      container.appendChild(node);
     }
 
-    drawNode(node) {
+    drawNode(items) {
       const container = document.createElement('ul');
-      const current = drawChildNode(node);
-      if(Array.isArray(node.chidren)) {
-        current.appendChild(node.chidren.map(child => drawNode(child)));
-      }
-      container.appendChild(current);
+      const children = items.map(item => this.drawChildNode(item).outerHTML);
+      container.innerHTML = children.join('');
+      return container;
     }
 
-    drawChildNode(child) {
+    drawChildNode(item) {
       const container = document.createElement('li');
-      if(child.assetsUrl !== undefined) {
-        const link = document.createElement('a');
-        link.setAttribute('href', chind.assetsUrl);
-        link.appendChild(child.title);
-        container.appendChild(link);
-        return container;
-      }
-      container.appendChild(child.title);
+      const link = document.createElement('a');
+      link.setAttribute('href', item.path);
+      link.appendChild(document.createTextNode(item.title));
+      container.appendChild(link);
       return container;
     }
 
 
     static get observedAttributes() {
-      return ['items-url'];
+      return ['items-list'];
     }
 
-    get itemsUrl() {
-      return this.getAttribute('items-url');
+    get itemsList() {
+      return this.getAttribute('items-list');
     }
 
-    set itemsUrl(newValue) {
-      this.setAttribute('items-url', newValue)
+    set itemsList(newValue) {
+      this.setAttribute('items-list', newValue);
+      this.draw();
     }
     
   }

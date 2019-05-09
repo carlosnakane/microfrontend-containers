@@ -1,15 +1,15 @@
 
 const scriptLoader = (url) => {
   return new Promise((resolve, reject) => {
-    const scriptTagRef = document.getElementsByName('script')[0];
+    const scriptTagRef = document.getElementsByTagName('script')[0];
     const newScriptTag = document.createElement('script');
-  
-    scriptTagRef.parentNode.appendChild(newScriptTag);
   
     newScriptTag.onload = resolve;
     newScriptTag.error = reject;
 
-    newScriptTag.src;
+    newScriptTag.src = url;
+
+    scriptTagRef.parentNode.appendChild(newScriptTag);
 
   });
 };

@@ -1,38 +1,36 @@
+import axios from 'axios';
 import scriptLoader from './script-loader';
 
-const moduleLoader = (registryUrl) => {
 
-  let registryDictionary = {};
+class ModuleLoader {
 
-  function fetchRegistry() {
-    return fetch(registryUrl)
-      .then(res => res.json())
-      .catch(e => console.error('Não foi possível acessar o Registry', e));
+  constructor() {
+    this.registryDictionary = {};
+    this.registryUrl = '';
   }
 
-  function init() {
-    return fetchRegistry('')
-      .then(reg => registryDictionary = reg);
+
+  init(registryUrl) {
+    this.registryUrl = registryUrl;
+    return axios.get(this.registryUrl)
+      .then(reg => this.registryDictionary = reg.data)
   }
 
-  function loadModule(moduleName) {
+  loadModule(moduleName) {
     return new Promise((resolveLoadModule, rejectLoadModule) => {
-      const moduleManifest = registryDictionary[moduleName];
-      if(moduleManifest === null) {
+      const moduleManifest = this.registryDictionary[moduleName];
+      if(moduleManifest == null) {
         rejectLoadModule(`Módulo ${moduleName} indisponível`);
         return;
       }
-
-      scriptLoader(`${moduleManifest.address}/dist/${moduleManifest.packageJson.main}`)
+  
+      scriptLoader(`${moduleManifest.staticServerUrl}/${moduleManifest.packageJson.main}`)
         .then(() => resolveLoadModule())
         .catch(() => rejectLoadModule());
     });
   }
+}
 
-  return {
-    init: (registryUrl) => init(registryUrl),
-    loadModule: (moduleName) => loadModule(moduleName)
-  };
-};
+const moduleLoaderInstace = new ModuleLoader();
 
-export default moduleLoader;
+export default moduleLoaderInstace;

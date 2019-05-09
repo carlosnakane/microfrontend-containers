@@ -1,10 +1,14 @@
 {
-  "name": "root-menu",
+  "name": "app-a",
   "version": "1.0.0",
-  "description": "menu da aplicação",
+  "description": "App A",
   "main": "index.js",
   "license": "UNLICENSED",
   "private": true,
+  "hercules": {
+    "path": "app-a",
+    "title": "App A"
+  },
   "scripts": {
     "prestart": "npm run copy-static",
     "prebuild": "npm run copy-static",
