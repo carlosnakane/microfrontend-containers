@@ -1,10 +1,9 @@
 import "./polyfills";
 import moduleLoader from './module-loader';
-import env from './env';
 
 const utils = {
   moduleLoader: moduleLoader,
-  registryApiUrl: env.REGISTRY_API
+  registryApiUrl: window.REGISTRY_API
 }
 
 const rootMenuName = 'root-menu';
@@ -13,7 +12,7 @@ window.utils = utils;
 
 utils
   .moduleLoader
-    .init(env.REGISTRY_API)
+    .init(utils.registryApiUrl)
     .then(() => {
       utils.moduleLoader.loadModule(rootMenuName)
         .then(() => initUI());

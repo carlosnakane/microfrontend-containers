@@ -1,5 +1,0 @@
-echo "const env = {"
-#echo "  REGISTRY_API: '$REGISTRY_API',"
-echo "  REGISTRY_API: 'http://127.0.0.1:18081',"
-echo "};"
-echo "export default env"
