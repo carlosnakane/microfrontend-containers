@@ -8,8 +8,6 @@ const utils = {
 
 const rootMenuName = 'root-menu';
 
-window.utils = utils;
-
 utils
   .moduleLoader
     .init(utils.registryApiUrl)
@@ -20,15 +18,20 @@ utils
 
 const initUI = () => {
   setupMenu();
+  setupRoute();
 }
-
-const alreadyLoaded = [];
 
 const setupMenu = () => {
   const $menu = document.getElementsByTagName(rootMenuName)[0];
   const routes = parseRoutes();
   $menu.setAttribute('routes', JSON.stringify(routes));
   $menu.addEventListener('routeClick', e => navigate(e.detail));
+}
+
+const setupRoute = () => {
+  if(window.location.pathname.length > 1) {
+    changeModule(window.location.pathname.replace('/', ''));
+  }
 }
 
 const navigate = (route) => {
@@ -46,6 +49,8 @@ const parseRoutes = () => {
     label: utils.moduleLoader.registryDictionary[moduleName].packageJson.hercules['title'],
   }));
 }
+
+const alreadyLoaded = [];
 
 const changeModule = (name) => {
   const rootContainer = document.getElementById('root-content');
