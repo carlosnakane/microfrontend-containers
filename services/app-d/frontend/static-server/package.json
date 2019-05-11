@@ -1,0 +1,14 @@
+{
+  "name": "@hercules/shared-tools",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "description": "Static http server",
+  "repository": {},
+  "dependencies": {
+    "express": "^4.16.4",
+    "minimist": "^1.2.0",
+    "request": "^2.88.0",
+    "serve-index": "^1.9.1"
+  }
+}

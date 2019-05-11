@@ -7,4 +7,5 @@ RUN cd /api \
   && npm run build
 
 
-CMD ["sh", "/startup.sh"]
+CMD ["node", "/api/dist/index.js"]
+

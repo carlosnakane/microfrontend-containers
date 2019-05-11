@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "menu da aplicação",
   "main": "index.js",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "prestart": "npm run copy-static",
@@ -22,10 +22,7 @@
     "browserify": "^16.2.3",
     "copyfiles": "^2.1.0",
     "eslint": "^5.16.0",
-    "express": "^4.16.4",
     "http-server": "^0.11.1",
-    "request": "^2.88.0",
-    "serve-index": "^1.9.1",
     "watchify": "^3.11.1"
   },
   "browserify": {

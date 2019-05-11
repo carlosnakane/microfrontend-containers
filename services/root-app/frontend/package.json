@@ -2,7 +2,7 @@
   "name": "root-app",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prestart": "cross-env REGISTRY_API=http://127.0.0.1:18081 && npm run copy-static",
     "prebuild": "npm run copy-static",

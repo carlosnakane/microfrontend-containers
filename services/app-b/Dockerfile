@@ -3,7 +3,9 @@ FROM node:11.14.0-alpine
 COPY . .
 
 RUN cd frontend \
+  && npm --prefix ./static-server install ./static-server \
   && npm i \ 
   && npm run build
 
-CMD ["node", "frontend/static-server/index.js"]
+ENTRYPOINT [ "node",  "frontend/init-http-server.js" ]
+CMD [ "--dir", "frontend/dist" ]

@@ -1,7 +1,7 @@
 {
   "name": "registry",
   "description": "Serviço de registro dos módulos/components",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "start": "cross-env INTERNAL_PORT=18081 nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",

@@ -14,6 +14,7 @@ x-base: &base
     - frontend-compose-network
 
 services:
+
   registry:
     extends:
       file: ./services/registry/docker-compose.yml
