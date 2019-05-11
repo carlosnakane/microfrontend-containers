@@ -31,7 +31,7 @@ $ docker-compose up
 
 If all goes well you should have this on your terminal:
 
-![terminal result](./readme-assets/compose-result.png "Terminal result")
+![terminal result](./readme-assets/terminal-result.png "Terminal result")
 
 
 ## So?
@@ -44,11 +44,11 @@ After You get all containers up You shall be able to access the url http://127.0
 
 ## Try this
 1. On a separeted terminal stop a app container ``docker stop app-d``
-   ![terminal result](./readme-assets/stop-container-d-result.png "Terminal result")
+   ![terminal result](./readme-assets/stop-container-app-d-result.png "Terminal result")
 2. After this reopen your browser on the url http://127.0.0.1:18080 (or just press F5 if it's already open);
    1. You shall see that the "App D" link is gone;
 3. Start the container again ``docker start app-d``
-   ![terminal result](./readme-assets/start-container-d-result.png "Terminal result")
+   ![terminal result](./readme-assets/start-container-app-d-result.png "Terminal result")
 4. Press F5 on your browser and now you can see the "App D" link back.
 
 ## Caveats
