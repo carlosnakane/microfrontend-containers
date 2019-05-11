@@ -3,8 +3,7 @@
 > Simulate a agnostic view render micro frontend using containers running a static http-server inside. 
 
 This approach fits on projects where there are several teams working on separated modules and they don't need to compose fragmented views like [this](https://micro-frontends.org/).
-
-This project doesn't aim explain the entire CI/CD cicle because the frontend build is part of Docker container build.
+This project doesn't aim explain the entire CI/CD cicle so the frontend build is part of Docker container image build.
 
 Feel free to ask and make PR's 👍
 
@@ -19,15 +18,15 @@ Feel free to ask and make PR's 👍
 * app-b: A pure ES6 with babel WebComponent (yes, again);
 * app-c: A Angular 6 made WebComponent;
 * app-d: A React 17 made WebComponent;
-* registry: Rest API where these above apps can register and unregister;
-* root-app: The index. This app instantiates the root-menu and makes requests to the registry server;
-* root-menu: Receive the routes list, render and dispach events when the User click some link.
+* registry: Rest API where these apps above can register and unregister itself;
+* root-app: The index. This app instantiates the root-menu and makes requests to the registry server and http-servers;
+* root-menu: Receive the routes list, render it and dispach events when the User click some link.
 
 ## Running
 ```
 $ docker-compose up
 ```
-> It will take a long time on first run depending on your internet connection and procesing power
+> It will take a long time on first run depending on your internet connection and your pc processing availability.
 
 If all goes well you should have this on your terminal:
 
@@ -52,5 +51,5 @@ After You get all containers up You shall be able to access the url http://127.0
 4. Press F5 on your browser and now you can see the "App D" link back.
 
 ## Caveats
-* It's intended to be just a POC so there is just one javascript file per container. It's can be easily changed setting a list of files (js and css) on the app package.json and read this in the root-app through the registry service;
-* It's a monorepo but don't have to be. So the static-server code is replicated on every app because each team should be able to build theyr own static http-server. It's useful for SSR server. Eventualy they can share some http-servers as a npm package.
+* It's intended to be just a POC so there is just one javascript file per container. It can be easily fixed setting a list of files (js and css) in the app package.json and read this in the root-app through the registry service;
+* It's a monorepo but don't have to be. So the static-server code is replicated on every app because each team should be able to build theyr own static http-server. It's useful for SSR server. Eventualy they can share some common http-servers as a npm package.
