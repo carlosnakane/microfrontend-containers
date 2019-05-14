@@ -1,6 +1,6 @@
 # Microfrontend Containers
 
-> Simulate a agnostic view render micro frontend using containers running a static http-server inside. 
+> Simulate an agnostic view render micro frontend using containers running a static http-server inside. 
 
 This approach fits on projects where there are several teams working on separated modules and they don't need to compose fragmented views like [this](https://micro-frontends.org/).
 This project doesn't aim explain the entire CI/CD cicle so the frontend build is part of Docker container image build.
